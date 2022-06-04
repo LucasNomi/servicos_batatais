@@ -1,16 +1,5 @@
 # servicos_batatais
 
-A new Flutter project.
+TCC do 3 ano de Desenvolvimento de Sistemas da ETEC Antônio de Padua Cardoso.
+APP Mobile de cadastro e busca de serviços para a cidade de Batatais - SP.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.

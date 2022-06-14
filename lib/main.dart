@@ -13,7 +13,11 @@ class MainPage extends StatelessWidget {
       home: Scaffold(
         body: Column(
           children: [
-            const Text('CorreAqui', textAlign: TextAlign.center),
+            const Text(
+              'CorreAqui',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+            ),
           ],
         ),
       ),

@@ -19,9 +19,6 @@ class MainPage extends StatelessWidget {
           ResponsiveBreakpoint.resize(800, name: DESKTOP),
           ResponsiveBreakpoint.autoScale(1000, name: 'XL')
         ],
-        background: Container(
-          color: const Color.fromARGB(255, 0, 0, 0),
-        ),
       ),
       initialRoute: '/',
       home: const HomePage(),

@@ -14,13 +14,14 @@ class MainPage extends StatelessWidget {
         child,
         defaultScale: true,
         breakpoints: const [
-          ResponsiveBreakpoint.resize(350, name: MOBILE),
-          ResponsiveBreakpoint.autoScale(600, name: TABLET),
-          ResponsiveBreakpoint.resize(800, name: DESKTOP),
-          ResponsiveBreakpoint.autoScale(1000, name: 'XL')
+          ResponsiveBreakpoint.resize(480, name: MOBILE),
+          ResponsiveBreakpoint.autoScale(780, name: TABLET),
         ],
       ),
-      home: const HomePage(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const HomePage(),
+      },
     );
   }
 }

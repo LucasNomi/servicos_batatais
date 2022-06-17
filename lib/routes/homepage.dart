@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
           children: [
             ElevatedButton.icon(
                 onPressed: () {},
-                icon: const Icon(Icons.person_add_outlined),
+                icon: const Icon(Icons.person_add),
                 label: const Text("Cadastrar")),
             ElevatedButton.icon(
               onPressed: () {},

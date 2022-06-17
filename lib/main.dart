@@ -20,7 +20,6 @@ class MainPage extends StatelessWidget {
           ResponsiveBreakpoint.autoScale(1000, name: 'XL')
         ],
       ),
-      initialRoute: '/',
       home: const HomePage(),
     );
   }

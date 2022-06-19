@@ -30,14 +30,14 @@ class _SignUpState extends State<SignUp> {
             ElevatedButton.icon(
                 onPressed: () {},
                 icon: const Icon(Icons.person_add),
-                label: const Text('ENTRAR COM O EMAIL')),
+                label: const Text('CADASTRAR COM O EMAIL')),
             const SizedBox(
               height: 20.0,
             ),
             ElevatedButton.icon(
                 onPressed: () {},
                 icon: const Icon(Icons.person_add),
-                label: const Text('ENTRAR COM O GOOGLE')),
+                label: const Text('CADASTRAR COM O GOOGLE')),
           ],
         ),
       ),

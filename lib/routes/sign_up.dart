@@ -16,13 +16,27 @@ class _SignUpState extends State<SignUp> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Form(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 50.0),
+                child: Row(
+                  children: [],
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 20.0,
+            ),
             ElevatedButton.icon(
                 onPressed: () {},
-                icon: const Icon(Icons.login),
+                icon: const Icon(Icons.person_add),
                 label: const Text('ENTRAR COM O EMAIL')),
+            const SizedBox(
+              height: 20.0,
+            ),
             ElevatedButton.icon(
                 onPressed: () {},
-                icon: const Icon(Icons.login),
+                icon: const Icon(Icons.person_add),
                 label: const Text('ENTRAR COM O GOOGLE')),
           ],
         ),

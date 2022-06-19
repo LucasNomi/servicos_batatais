@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:servicos_batatais/routes/homepage.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:servicos_batatais/routes/wrapper.dart';
 
 void main() => runApp(const MainPage());
 
@@ -18,10 +18,7 @@ class MainPage extends StatelessWidget {
           ResponsiveBreakpoint.autoScale(780, name: TABLET),
         ],
       ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const HomePage(),
-      },
+      home: const Wrapper(),
     );
   }
 }

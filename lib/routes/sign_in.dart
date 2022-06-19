@@ -18,12 +18,12 @@ class _SignInState extends State<SignIn> {
             children: [
               ElevatedButton.icon(
                   onPressed: () {},
-                  icon: const Icon(Icons.person_add),
-                  label: const Text('Cadastrar com email')),
+                  icon: const Icon(Icons.login),
+                  label: const Text('ENTRAR COM O EMAIL')),
               ElevatedButton.icon(
                   onPressed: () {},
-                  icon: const Icon(Icons.person_add),
-                  label: const Text('Cadastrar com google')),
+                  icon: const Icon(Icons.login),
+                  label: const Text('ENTRAR COM O GOOGLE')),
             ],
           ),
         ));

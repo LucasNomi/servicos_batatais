@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:servicos_batatais/routes/sign_in.dart';
+import 'package:servicos_batatais/routes/sign_up.dart';
 
 class Authenticate extends StatelessWidget {
   const Authenticate({Key? key}) : super(key: key);
@@ -13,7 +14,10 @@ class Authenticate extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton.icon(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => const SignUp()));
+                },
                 icon: const Icon(Icons.person_add),
                 label: const Text("Cadastrar")),
             const SizedBox(

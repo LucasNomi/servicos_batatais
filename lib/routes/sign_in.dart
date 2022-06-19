@@ -16,6 +16,14 @@ class _SignInState extends State<SignIn> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Form(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 50.0),
+                child: Row(
+                  children: [],
+                ),
+              ),
+            ),
             ElevatedButton.icon(
                 onPressed: () {},
                 icon: const Icon(Icons.login),

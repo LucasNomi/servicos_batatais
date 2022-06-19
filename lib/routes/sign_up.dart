@@ -1,0 +1,32 @@
+import 'package:flutter/material.dart';
+
+class SignUp extends StatefulWidget {
+  const SignUp({Key? key}) : super(key: key);
+
+  @override
+  State<SignUp> createState() => _SignUpState();
+}
+
+class _SignUpState extends State<SignUp> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton.icon(
+                onPressed: () {},
+                icon: const Icon(Icons.login),
+                label: const Text('ENTRAR COM O EMAIL')),
+            ElevatedButton.icon(
+                onPressed: () {},
+                icon: const Icon(Icons.login),
+                label: const Text('ENTRAR COM O GOOGLE')),
+          ],
+        ),
+      ),
+    );
+  }
+}

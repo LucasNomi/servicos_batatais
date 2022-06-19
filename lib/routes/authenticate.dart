@@ -16,6 +16,9 @@ class Authenticate extends StatelessWidget {
                 onPressed: () {},
                 icon: const Icon(Icons.person_add),
                 label: const Text("Cadastrar")),
+            const SizedBox(
+              height: 20.0,
+            ),
             ElevatedButton.icon(
               onPressed: () {
                 Navigator.of(context).push(

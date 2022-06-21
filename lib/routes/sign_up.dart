@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class SignIn extends StatefulWidget {
-  const SignIn({Key? key}) : super(key: key);
+class SignUp extends StatefulWidget {
+  const SignUp({Key? key}) : super(key: key);
 
   @override
-  State<SignIn> createState() => _SignInState();
+  State<SignUp> createState() => _SignUpState();
 }
 
-class _SignInState extends State<SignIn> {
+class _SignUpState extends State<SignUp> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _nameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class _SignInState extends State<SignIn> {
                 TextFormField(
                   controller: _emailController,
                   decoration: const InputDecoration(
-                    hintText: 'Entre seu email',
+                    hintText: 'Entre um email',
                     border: OutlineInputBorder(),
                   ),
                   validator: (val) {
@@ -61,6 +62,22 @@ class _SignInState extends State<SignIn> {
                   },
                 ),
                 const SizedBox(
+                  height: 10,
+                ),
+                TextFormField(
+                  controller: _nameController,
+                  decoration: const InputDecoration(
+                    hintText: 'Entre seu nome',
+                    border: OutlineInputBorder(),
+                  ),
+                  validator: (val) {
+                    if (val == null || val.isEmpty) {
+                      return 'Entre um nome';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(
                   height: 20,
                 ),
                 ElevatedButton.icon(
@@ -68,7 +85,7 @@ class _SignInState extends State<SignIn> {
                       if (_formKey.currentState!.validate()) {}
                     },
                     icon: const Icon(Icons.email),
-                    label: const Text('LOGAR COM EMAIL')),
+                    label: const Text('CADASTRAR EMAIL')),
                 const SizedBox(
                   height: 20,
                 ),
@@ -77,7 +94,7 @@ class _SignInState extends State<SignIn> {
                       if (_formKey.currentState!.validate()) {}
                     },
                     icon: const FaIcon(FontAwesomeIcons.google),
-                    label: const Text('LOGAR COM GOOGLE')),
+                    label: const Text('CADASTRAR GOOGLE')),
               ],
             ),
           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -78,6 +79,10 @@ class _SignUpState extends State<SignUp> {
                 const SizedBox(
                   height: 20,
                 ),
+                ElevatedButton.icon(
+                    onPressed: () {},
+                    icon: const FaIcon(FontAwesomeIcons.google),
+                    label: const Text('CADASTRAR GOOGLE')),
               ],
             ),
           ),

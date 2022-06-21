@@ -33,8 +33,8 @@ class _SignUpState extends State<SignUp> {
                   validator: (val) {
                     if (val == null || val.isEmpty) {
                       return 'Entre um email';
-                    } else if (val.length < 8) {
-                      return 'Email precisa ser maior que 8 caracteres';
+                    } else if (val.length < 6) {
+                      return 'Email precisa ser maior que 6 caracteres';
                     } else if (!val.contains('@')) {
                       return 'Email não é válido';
                     }
@@ -47,6 +47,7 @@ class _SignUpState extends State<SignUp> {
                     hintText: 'Entre uma senha',
                     border: OutlineInputBorder(),
                   ),
+                  obscureText: true,
                   validator: (val) {
                     if (val == null || val.isEmpty) {
                       return 'Entre uma senha';

@@ -8,39 +8,55 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  final _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(130, 195, 195, 195),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Form(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 50.0),
-                child: Row(
-                  children: [],
+        backgroundColor: const Color.fromARGB(130, 195, 195, 195),
+        body: Form(
+          key: _formKey,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 50.0),
+            child: Column(
+              children: [
+                TextFormField(
+                  controller: _emailController,
+                  decoration: const InputDecoration(
+                    hintText: 'Entre um email',
+                    border: OutlineInputBorder(),
+                  ),
+                  validator: (val) {
+                    if (val == null || val.isEmpty) {
+                      return 'Entre um email';
+                    } else if (val.length < 8) {
+                      return 'Email precisa ser maior que 8 caracteres';
+                    } else if (!val.contains('@')) {
+                      return 'Email não é válido';
+                    }
+                    return null;
+                  },
                 ),
-              ),
+                TextFormField(
+                  controller: _passwordController,
+                  decoration: const InputDecoration(
+                    hintText: 'Entre uma senha',
+                    border: OutlineInputBorder(),
+                  ),
+                  validator: (val) {
+                    if (val == null || val.isEmpty) {
+                      return 'Entre uma senha';
+                    } else if (val.length < 10) {
+                      return 'Senha precisa ser maior que  caracteres';
+                    }
+                    return null;
+                  },
+                )
+              ],
             ),
-            const SizedBox(
-              height: 20.0,
-            ),
-            ElevatedButton.icon(
-                onPressed: () {},
-                icon: const Icon(Icons.person_add),
-                label: const Text('CADASTRAR COM O EMAIL')),
-            const SizedBox(
-              height: 20.0,
-            ),
-            ElevatedButton.icon(
-                onPressed: () {},
-                icon: const Icon(Icons.person_add),
-                label: const Text('CADASTRAR COM O GOOGLE')),
-          ],
-        ),
-      ),
-    );
+          ),
+        ));
   }
 }

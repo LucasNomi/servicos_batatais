@@ -67,7 +67,17 @@ class _SignUpState extends State<SignUp> {
                     }
                     return null;
                   },
-                )
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                ElevatedButton.icon(
+                    onPressed: () {},
+                    icon: const Icon(Icons.email),
+                    label: const Text('CADASTRAR EMAIL')),
+                const SizedBox(
+                  height: 20,
+                ),
               ],
             ),
           ),

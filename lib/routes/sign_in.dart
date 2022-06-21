@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -8,38 +9,69 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+  final _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(130, 195, 195, 195),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Form(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 50.0),
-                child: Row(
-                  children: [],
+        backgroundColor: const Color.fromARGB(130, 195, 195, 195),
+        body: Form(
+          key: _formKey,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 50.0),
+            child: Column(
+              children: [
+                TextFormField(
+                  controller: _emailController,
+                  decoration: const InputDecoration(
+                    hintText: 'Entre seu email',
+                    border: OutlineInputBorder(),
+                  ),
+                  validator: (val) {
+                    if (val == null || val.isEmpty) {
+                      return 'Entre um email';
+                    } else if (val.length < 8) {
+                      return 'Email precisa ser maior que 8 caracteres';
+                    } else if (!val.contains('@')) {
+                      return 'Email não é válido';
+                    }
+                    return null;
+                  },
                 ),
-              ),
+                TextFormField(
+                  controller: _passwordController,
+                  decoration: const InputDecoration(
+                    hintText: 'Entre uma senha',
+                    border: OutlineInputBorder(),
+                  ),
+                  validator: (val) {
+                    if (val == null || val.isEmpty) {
+                      return 'Entre uma senha';
+                    } else if (val.length < 10) {
+                      return 'Senha precisa ser maior que 10 caracteres';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                ElevatedButton.icon(
+                    onPressed: () {},
+                    icon: const Icon(Icons.email),
+                    label: const Text('CADASTRAR EMAIL')),
+                const SizedBox(
+                  height: 20,
+                ),
+                ElevatedButton.icon(
+                    onPressed: () {},
+                    icon: const FaIcon(FontAwesomeIcons.google),
+                    label: const Text('CADASTRAR GOOGLE')),
+              ],
             ),
-            ElevatedButton.icon(
-              onPressed: () {},
-              icon: const Icon(Icons.login),
-              label: const Text('ENTRAR COM O EMAIL'),
-            ),
-            const SizedBox(
-              height: 20.0,
-            ),
-            ElevatedButton.icon(
-              onPressed: () {},
-              icon: const Icon(Icons.login),
-              label: const Text('ENTRAR COM O GOOGLE'),
-            ),
-          ],
-        ),
-      ),
-    );
+          ),
+        ));
   }
 }

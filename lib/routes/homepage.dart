@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:servicos_batatais/routes/sign_in.dart';
+import 'package:servicos_batatais/routes/userpage.dart';
 
 import 'sign_in.dart';
 
@@ -13,6 +14,12 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0.0,
+        title: const Text('Usuário'),
+      ),
+      body: const UserPage(),
+    );
   }
 }

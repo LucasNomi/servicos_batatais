@@ -64,14 +64,18 @@ class _SignInState extends State<SignIn> {
                   height: 20,
                 ),
                 ElevatedButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {}
+                    },
                     icon: const Icon(Icons.email),
                     label: const Text('LOGAR COM EMAIL')),
                 const SizedBox(
                   height: 20,
                 ),
                 ElevatedButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {}
+                    },
                     icon: const FaIcon(FontAwesomeIcons.google),
                     label: const Text('LOGAR COM GOOGLE')),
               ],

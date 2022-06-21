@@ -22,6 +22,7 @@ class _SignInState extends State<SignIn> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 50.0),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TextFormField(
                   controller: _emailController,
@@ -39,6 +40,9 @@ class _SignInState extends State<SignIn> {
                     }
                     return null;
                   },
+                ),
+                const SizedBox(
+                  height: 10,
                 ),
                 TextFormField(
                   controller: _passwordController,

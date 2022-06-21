@@ -42,6 +42,9 @@ class _SignUpState extends State<SignUp> {
                     return null;
                   },
                 ),
+                const SizedBox(
+                  height: 10,
+                ),
                 TextFormField(
                   controller: _passwordController,
                   decoration: const InputDecoration(
@@ -57,6 +60,9 @@ class _SignUpState extends State<SignUp> {
                     }
                     return null;
                   },
+                ),
+                const SizedBox(
+                  height: 10,
                 ),
                 TextFormField(
                   controller: _nameController,

@@ -61,14 +61,14 @@ class _SignInState extends State<SignIn> {
                 ElevatedButton.icon(
                     onPressed: () {},
                     icon: const Icon(Icons.email),
-                    label: const Text('CADASTRAR EMAIL')),
+                    label: const Text('LOGAR COM EMAIL')),
                 const SizedBox(
                   height: 20,
                 ),
                 ElevatedButton.icon(
                     onPressed: () {},
                     icon: const FaIcon(FontAwesomeIcons.google),
-                    label: const Text('CADASTRAR GOOGLE')),
+                    label: const Text('LOGAR COM GOOGLE')),
               ],
             ),
           ),

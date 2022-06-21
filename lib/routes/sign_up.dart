@@ -51,7 +51,7 @@ class _SignUpState extends State<SignUp> {
                     if (val == null || val.isEmpty) {
                       return 'Entre uma senha';
                     } else if (val.length < 10) {
-                      return 'Senha precisa ser maior que  caracteres';
+                      return 'Senha precisa ser maior que 10 caracteres';
                     }
                     return null;
                   },

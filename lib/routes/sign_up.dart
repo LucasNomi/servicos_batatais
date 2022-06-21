@@ -11,6 +11,7 @@ class _SignUpState extends State<SignUp> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _nameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +51,19 @@ class _SignUpState extends State<SignUp> {
                       return 'Entre uma senha';
                     } else if (val.length < 10) {
                       return 'Senha precisa ser maior que  caracteres';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _nameController,
+                  decoration: const InputDecoration(
+                    hintText: 'Entre seu nome',
+                    border: OutlineInputBorder(),
+                  ),
+                  validator: (val) {
+                    if (val == null || val.isEmpty) {
+                      return 'Entre um nome';
                     }
                     return null;
                   },

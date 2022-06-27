@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:servicos_batatais/routes/homepage.dart';
+import 'package:servicos_batatais/services/auth_service.dart';
+import 'package:provider/provider.dart';
+import 'package:servicos_batatais/widgets/logo.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -12,7 +16,17 @@ class _SignUpState extends State<SignUp> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  final _nameController = TextEditingController();
+
+  registrar() async {
+    try {
+      await context
+          .read<AuthService>()
+          .registrar(_emailController.text, _passwordController.text);
+    } on AuthException catch (e) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.message)));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +39,10 @@ class _SignUpState extends State<SignUp> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                const LogoCorreAqui(),
+                const SizedBox(
+                  height: 50.0,
+                ),
                 TextFormField(
                   controller: _emailController,
                   decoration: const InputDecoration(
@@ -64,25 +82,16 @@ class _SignUpState extends State<SignUp> {
                 const SizedBox(
                   height: 10,
                 ),
-                TextFormField(
-                  controller: _nameController,
-                  decoration: const InputDecoration(
-                    hintText: 'Entre seu nome',
-                    border: OutlineInputBorder(),
-                  ),
-                  validator: (val) {
-                    if (val == null || val.isEmpty) {
-                      return 'Entre um nome';
-                    }
-                    return null;
-                  },
-                ),
                 const SizedBox(
                   height: 20,
                 ),
                 ElevatedButton.icon(
                     onPressed: () {
-                      if (_formKey.currentState!.validate()) {}
+                      if (_formKey.currentState!.validate()) {
+                        registrar();
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const HomePage()));
+                      }
                     },
                     icon: const Icon(Icons.email),
                     label: const Text('CADASTRAR EMAIL')),

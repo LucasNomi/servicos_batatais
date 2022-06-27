@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:servicos_batatais/routes/sign_in.dart';
-
-import 'sign_in.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -13,6 +10,12 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+        body: Center(
+      child: Text(
+        'BEM-VINDO!',
+        style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+      ),
+    ));
   }
 }

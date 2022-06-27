@@ -1,11 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:servicos_batatais/routes/authenticate.dart';
+import 'package:servicos_batatais/routes/homepage.dart';
+import 'package:servicos_batatais/services/auth_service.dart';
 
-class Wrapper extends StatelessWidget {
+class Wrapper extends StatefulWidget {
   const Wrapper({Key? key}) : super(key: key);
 
   @override
+  State<Wrapper> createState() => _WrapperState();
+}
+
+class _WrapperState extends State<Wrapper> {
+  @override
   Widget build(BuildContext context) {
-    return Authenticate();
+    AuthService auth = Provider.of<AuthService>(context);
+    if (auth.isLoading) {
+      return loading();
+    } else if (auth.usuario == null) {
+      return const Authenticate();
+    } else {
+      return const HomePage();
+    }
+  }
+
+  loading() {
+    return const Scaffold(
+      body: Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:servicos_batatais/routes/sign_in.dart';
 import 'package:servicos_batatais/routes/sign_up.dart';
+import 'package:servicos_batatais/widgets/logo.dart';
 
 class Authenticate extends StatelessWidget {
   const Authenticate({Key? key}) : super(key: key);
@@ -13,6 +14,10 @@ class Authenticate extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const LogoCorreAqui(),
+            const SizedBox(
+              height: 50.0,
+            ),
             ElevatedButton.icon(
                 onPressed: () {
                   Navigator.of(context).push(

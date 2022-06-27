@@ -16,7 +16,7 @@ class _WrapperState extends State<Wrapper> {
   Widget build(BuildContext context) {
     AuthService auth = Provider.of<AuthService>(context);
     if (auth.isLoading) {
-      return Loading();
+      return loading();
     } else if (auth.usuario == null) {
       return const Authenticate();
     } else {
@@ -24,7 +24,7 @@ class _WrapperState extends State<Wrapper> {
     }
   }
 
-  Loading() {
+  loading() {
     return const Scaffold(
       body: Center(
         child: CircularProgressIndicator(),

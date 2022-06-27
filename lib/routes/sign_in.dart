@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:servicos_batatais/routes/homepage.dart';
+import 'package:servicos_batatais/services/auth_service.dart';
+import 'package:provider/provider.dart';
+import 'package:servicos_batatais/widgets/logo.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -13,6 +17,17 @@ class _SignInState extends State<SignIn> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
+  login() async {
+    try {
+      await context
+          .read<AuthService>()
+          .login(_emailController.text, _passwordController.text);
+    } on AuthException catch (e) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.message)));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,12 +39,17 @@ class _SignInState extends State<SignIn> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                const LogoCorreAqui(),
+                const SizedBox(
+                  height: 50.0,
+                ),
                 TextFormField(
                   controller: _emailController,
                   decoration: const InputDecoration(
                     hintText: 'Entre seu email',
                     border: OutlineInputBorder(),
                   ),
+                  keyboardType: TextInputType.emailAddress,
                   validator: (val) {
                     if (val == null || val.isEmpty) {
                       return 'Entre um email';
@@ -65,7 +85,11 @@ class _SignInState extends State<SignIn> {
                 ),
                 ElevatedButton.icon(
                     onPressed: () {
-                      if (_formKey.currentState!.validate()) {}
+                      if (_formKey.currentState!.validate()) {
+                        login();
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const HomePage()));
+                      }
                     },
                     icon: const Icon(Icons.email),
                     label: const Text('LOGAR COM EMAIL')),

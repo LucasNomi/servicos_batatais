@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:servicos_batatais/routes/sign_in.dart';
-import 'package:servicos_batatais/routes/sign_up.dart';
 import 'package:servicos_batatais/widgets/logo.dart';
 
 class Authenticate extends StatelessWidget {
@@ -18,24 +16,6 @@ class Authenticate extends StatelessWidget {
             const SizedBox(
               height: 50.0,
             ),
-            ElevatedButton.icon(
-                onPressed: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => const SignUp()));
-                },
-                icon: const Icon(Icons.person_add),
-                label: const Text("Cadastrar")),
-            const SizedBox(
-              height: 20.0,
-            ),
-            ElevatedButton.icon(
-              onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => const SignIn()));
-              },
-              icon: const Icon(Icons.login),
-              label: const Text("Logar"),
-            )
           ],
         ),
       ),

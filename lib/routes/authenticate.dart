@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Authenticate extends StatefulWidget {
   const Authenticate({Key? key}) : super(key: key);
@@ -11,6 +12,9 @@ class _AuthenticateState extends State<Authenticate> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
+  bool isSignIn = true;
+  Text btnLRLabel = Text('Login');
+  Icon IconLR = Icon(Icons.login);
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +61,7 @@ class _AuthenticateState extends State<Authenticate> {
             const SizedBox(
               height: 30,
             ),
-            ElevatedButton.icon(onPressed: (){}, icon: _IconLRLabel, label: _btnLRLabel)
+            ElevatedButton.icon(onPressed: (){}, icon: IconLR, label: btnLRLabel)
           ],
         ),
       ),

@@ -21,7 +21,19 @@ class _AuthenticateState extends State<Authenticate> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            
+            TextFormField(
+              controller: _email,
+              decoration: const InputDecoration(
+                labelText: 'Email',
+                border: OutlineInputBorder(),
+              ),
+              validator: (String? val) {
+                if(val == null || val.isEmpty){
+                  return 'Please enter an email';
+                }
+                return null;
+                },
+            ),
           ],
         ),
       ),

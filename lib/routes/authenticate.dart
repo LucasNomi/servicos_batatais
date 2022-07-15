@@ -57,6 +57,7 @@ class _AuthenticateState extends State<Authenticate> {
             const SizedBox(
               height: 30,
             ),
+            ElevatedButton.icon(onPressed: (){}, icon: _IconLRLabel, label: _btnLRLabel)
           ],
         ),
       ),

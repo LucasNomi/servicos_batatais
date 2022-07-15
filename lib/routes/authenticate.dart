@@ -12,9 +12,19 @@ class _AuthenticateState extends State<Authenticate> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
-  bool isSignIn = true;
-  Text btnLRLabel = Text('Login');
-  Icon IconLR = Icon(Icons.login);
+
+  @override
+  void initState(){
+    super.initState();
+    bool isSignIn = true;
+    Text btnLRLabel = Text('Login');
+    Icon IconLR = Icon(Icons.login);
+    if(isSignIn == false){
+      Text btnLRLabel = Text('Registrar');
+      Icon IconLR = Icon(Icons.person_add);
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {

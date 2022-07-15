@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:servicos_batatais/widgets/logo.dart';
 
 class Authenticate extends StatefulWidget {
   const Authenticate({Key? key}) : super(key: key);

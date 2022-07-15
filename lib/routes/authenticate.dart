@@ -36,6 +36,9 @@ class _AuthenticateState extends State<Authenticate> {
                 return null;
                 },
             ),
+            const SizedBox(
+              height: 30,
+            ),
             TextFormField(
               controller: _password,
               obscureText: true,
@@ -51,6 +54,9 @@ class _AuthenticateState extends State<Authenticate> {
                 }
                 return null;
               },
+            ),
+            const SizedBox(
+              height: 30,
             ),
           ],
         ),

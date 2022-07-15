@@ -29,10 +29,28 @@ class _AuthenticateState extends State<Authenticate> {
               ),
               validator: (String? val) {
                 if(val == null || val.isEmpty){
-                  return 'Please enter an email';
+                  return 'Por favor insira um email';
+                }else if(!val.contains('@')){
+                  return 'Por favor insira um email valido';
                 }
                 return null;
                 },
+            ),
+            TextFormField(
+              controller: _password,
+              obscureText: true,
+              decoration: const InputDecoration(
+                labelText: 'Password',
+                border: OutlineInputBorder(),
+              ),
+              validator: (String? val){
+                if(val == null || val.isEmpty){
+                  return 'Por favor insira uma senha';
+                }else if(val.length < 8){
+                  return 'Senha precisa ter mais que 8 digitos';
+                }
+                return null;
+              },
             ),
           ],
         ),

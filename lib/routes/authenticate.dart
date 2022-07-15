@@ -12,16 +12,23 @@ class _AuthenticateState extends State<Authenticate> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
+  bool isSignIn = true;
+  late Text btnLRLabel;
+  late Icon iconLR;
+  late Text btnChangeAuth;
 
   @override
   void initState(){
     super.initState();
     bool isSignIn = true;
-    Text btnLRLabel = Text('Login');
-    Icon IconLR = Icon(Icons.login);
+    btnLRLabel = Text('Login');
+    iconLR = Icon(Icons.login);
+    btnChangeAuth = Text('Ainda não tem uma conta? Registre-se!');
+
     if(isSignIn == false){
-      Text btnLRLabel = Text('Registrar');
-      Icon IconLR = Icon(Icons.person_add);
+      btnLRLabel = Text('Registrar');
+      iconLR = Icon(Icons.person_add);
+      btnChangeAuth = Text('Já possuí uma conta? Efetue o login!');
     }
   }
 
@@ -50,7 +57,7 @@ class _AuthenticateState extends State<Authenticate> {
                 },
             ),
             const SizedBox(
-              height: 30,
+              height: 30.0,
             ),
             TextFormField(
               controller: _password,
@@ -69,9 +76,15 @@ class _AuthenticateState extends State<Authenticate> {
               },
             ),
             const SizedBox(
-              height: 30,
+              height: 30.0,
             ),
-            ElevatedButton.icon(onPressed: (){}, icon: IconLR, label: btnLRLabel)
+            ElevatedButton.icon(onPressed: (){}, icon: iconLR, label: btnLRLabel),
+            const SizedBox(
+              height: 50.0,
+            ),
+            TextButton(onPressed: (){
+              isSignIn == false;
+            }, child: btnChangeAuth),
           ],
         ),
       ),

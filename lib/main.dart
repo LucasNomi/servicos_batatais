@@ -5,6 +5,8 @@ import 'package:servicos_batatais/responsive/mobile_screen_layout.dart';
 import 'package:servicos_batatais/responsive/responsive_layout.dart';
 import 'package:servicos_batatais/responsive/web_screen_layout.dart';
 import 'package:servicos_batatais/screens/login_screen.dart';
+import 'package:servicos_batatais/screens/signup_screen.dart';
+import 'package:servicos_batatais/utils/colors.dart';
 
 void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
@@ -20,7 +22,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Serviços Batatais',
-      theme: ThemeData.dark(),
+      theme: ThemeData.dark()
+          .copyWith(scaffoldBackgroundColor: mobileBackgroundColor),
       // home: const ResponsiveLayout(
       //   mobileScreenLayout: MobileScreenLayout(),
       //   webScreenLayout: WebScreenLayout(),

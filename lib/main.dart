@@ -4,6 +4,7 @@ import 'package:servicos_batatais/firebase_options.dart';
 import 'package:servicos_batatais/responsive/mobile_screen_layout.dart';
 import 'package:servicos_batatais/responsive/responsive_layout.dart';
 import 'package:servicos_batatais/responsive/web_screen_layout.dart';
+import 'package:servicos_batatais/screens/login_screen.dart';
 
 void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
@@ -20,10 +21,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Serviços Batatais',
       theme: ThemeData.dark(),
-      home: const ResponsiveLayout(
-        mobileScreenLayout: MobileScreenLayout(),
-        webScreenLayout: WebScreenLayout(),
-      ),
+      // home: const ResponsiveLayout(
+      //   mobileScreenLayout: MobileScreenLayout(),
+      //   webScreenLayout: WebScreenLayout(),
+      home: const LoginScreen(),
     );
   }
 }

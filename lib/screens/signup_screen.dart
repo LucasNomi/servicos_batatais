@@ -1,4 +1,8 @@
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:servicos_batatais/services/auth_service.dart';
+import 'package:servicos_batatais/utils/utils.dart';
 
 import '../utils/colors.dart';
 import '../widgets/text_field_input.dart';
@@ -14,6 +18,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final _email = TextEditingController();
   final _password = TextEditingController();
   final _userName = TextEditingController();
+  Uint8List? _image;
 
   @override
   void dispose() {
@@ -21,6 +26,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
     _email.dispose();
     _password.dispose();
     _userName.dispose();
+  }
+
+  void selectImage() async {
+    Uint8List image = await pickImage(ImageSource.gallery);
+    setState(() {
+      _image = image;
+    });
   }
 
   @override
@@ -44,17 +56,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
               //* circular avatar input
               Stack(
                 children: [
-                  CircleAvatar(
-                    radius: 64,
-                    backgroundColor: Colors.indigo[50],
-                    backgroundImage: NetworkImage(
-                        'https://www.pinterest.com/pin/710231803741582825/'),
-                  ),
+                  _image != null
+                      ? CircleAvatar(
+                          radius: 64,
+                          backgroundColor: Colors.indigo[50],
+                          backgroundImage: MemoryImage(_image!),
+                        )
+                      : CircleAvatar(
+                          radius: 64,
+                          backgroundColor: Colors.indigo[50],
+                          backgroundImage: const NetworkImage(
+                              'https://www.pinterest.com/pin/710231803741582825/'),
+                        ),
                   Positioned(
                     bottom: -10,
                     left: 80,
                     child: IconButton(
-                      onPressed: () {},
+                      onPressed: selectImage,
                       icon: const Icon(Icons.add_a_photo),
                     ),
                   ),
@@ -98,7 +116,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 height: 12,
               ),
               InkWell(
-                onTap: () {},
+                onTap: () async {
+                  String res = await AuthService().signUpUser(
+                      email: _email.text,
+                      password: _password.text,
+                      username: _userName.text,
+                      imageUrl: _image!);
+                  print(res);
+                },
                 child: Container(
                   width: double.infinity,
                   alignment: Alignment.center,
@@ -112,7 +137,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     color: primaryColor,
                   ),
                   child: const Text(
-                    'Entrar',
+                    'Cadastrar',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 15,
@@ -130,14 +155,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 children: [
                   Container(
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: const Text('Ainda não possui uma conta?'),
+                    child: const Text('Já possui uma conta?'),
                   ),
                   GestureDetector(
                     onTap: () {},
                     child: Container(
                       padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: const Text(
-                        ' Registre-se',
+                        ' Efetue o login',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: hightLightColor,

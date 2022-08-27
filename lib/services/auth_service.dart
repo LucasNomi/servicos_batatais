@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:servicos_batatais/models/user_model.dart';
 import 'package:servicos_batatais/services/storage_service.dart';
 
 class AuthException implements Exception {
@@ -34,13 +35,18 @@ class AuthService {
         String url = await StorageService()
             .uploadImagetoStorage("profilePics", imageUrl, false);
 
+        //* creating user
+        MyUser user = MyUser(
+            uid: credential.user!.uid,
+            email: email,
+            username: username,
+            imageUrl: url);
+
         //* add user to database
-        await _firestore.collection('users').doc(credential.user!.uid).set({
-          'username': username,
-          'uid': credential.user!.uid,
-          'email': email,
-          'imageUrl': url,
-        });
+        await _firestore
+            .collection('users')
+            .doc(credential.user!.uid)
+            .set(user.toJson());
         res = 'success';
       }
     } on FirebaseAuthException catch (e) {

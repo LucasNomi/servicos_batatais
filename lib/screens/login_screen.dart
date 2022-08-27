@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:servicos_batatais/screens/signup_screen.dart';
 import 'package:servicos_batatais/services/auth_service.dart';
-import 'package:servicos_batatais/utils/colors.dart';
-import 'package:servicos_batatais/utils/utils.dart';
 
+import '../utils/colors.dart';
+import '../utils/utils.dart';
+import '../responsive/mobile_screen_layout.dart';
+import '../responsive/responsive_layout.dart';
+import '../responsive/web_screen_layout.dart';
 import '../widgets/text_form_field_input.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -17,25 +20,47 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final _email = TextEditingController();
   final _password = TextEditingController();
-  final bool _isLoading = false;
+  bool _isLoading = false;
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _email.dispose();
     _password.dispose();
   }
 
-  loginUser() async {
+  void loginUser() async {
+    setState(() {
+      _isLoading = true;
+    });
     try {
       if (_formKey.currentState!.validate()) {
-        await AuthService()
+        String res = await AuthService()
             .loginUser(email: _email.text, password: _password.text);
+
+        if (res == 'success') {
+          navHomeScreen();
+        }
       }
     } on AuthException catch (e) {
       showSnackBar(e.message, context);
     }
+
+    setState(() {
+      _isLoading = false;
+    });
+  }
+
+  void navHomeScreen() {
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => const ResponsiveLayout(
+            webScreenLayout: WebScreenLayout(),
+            mobileScreenLayout: MobileScreenLayout())));
+  }
+
+  void navSignUp() {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => const SignUpScreen()));
   }
 
   @override
@@ -114,7 +139,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: const Text('Ainda não possui uma conta?'),
                       ),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: navSignUp,
                         child: Container(
                           padding: const EdgeInsets.symmetric(vertical: 8.0),
                           child: const Text(

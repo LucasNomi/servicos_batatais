@@ -1,9 +1,13 @@
-import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'dart:typed_data';
 import 'package:image_picker/image_picker.dart';
-import 'package:servicos_batatais/services/auth_service.dart';
-import 'package:servicos_batatais/utils/utils.dart';
 
+import '../screens/login_screen.dart';
+import '../services/auth_service.dart';
+import '../utils/utils.dart';
+import '../responsive/mobile_screen_layout.dart';
+import '../responsive/responsive_layout.dart';
+import '../responsive/web_screen_layout.dart';
 import '../utils/colors.dart';
 import '../widgets/text_form_field_input.dart';
 
@@ -44,11 +48,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
     try {
       if (_formKey.currentState!.validate()) {
-        await AuthService().signUpUser(
+        String res = await AuthService().signUpUser(
             email: _email.text,
             password: _password.text,
             username: _userName.text,
             imageUrl: _image!);
+
+        if (res == 'success') {
+          navHomeScreen();
+        }
       }
     } on AuthException catch (e) {
       showSnackBar(e.message, context);
@@ -57,6 +65,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
     setState(() {
       _isLoading = false;
     });
+  }
+
+  void navHomeScreen() {
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => const ResponsiveLayout(
+            webScreenLayout: WebScreenLayout(),
+            mobileScreenLayout: MobileScreenLayout())));
+  }
+
+  void navLogin() {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => const LoginScreen()));
   }
 
   @override
@@ -176,7 +196,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         child: const Text('Já possui uma conta?'),
                       ),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: navLogin,
                         child: Container(
                           padding: const EdgeInsets.symmetric(vertical: 8.0),
                           child: const Text(

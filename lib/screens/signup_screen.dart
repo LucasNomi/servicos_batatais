@@ -37,6 +37,29 @@ class _SignUpScreenState extends State<SignUpScreen> {
     });
   }
 
+  void signUpUser() async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      if (_formKey.currentState!.validate()) {
+        await AuthService().signUpUser(
+            email: _email.text,
+            password: _password.text,
+            username: _userName.text,
+            imageUrl: _image!);
+      }
+    } on AuthException catch (e) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.message)));
+    }
+
+    setState(() {
+      _isLoading = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -121,22 +144,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     height: 12,
                   ),
                   InkWell(
-                    onTap: () async {
-                      setState(() {
-                        _isLoading = true;
-                      });
-                      if (_formKey.currentState!.validate()) {
-                        await AuthService().signUpUser(
-                            email: _email.text,
-                            password: _password.text,
-                            username: _userName.text,
-                            imageUrl: _image!);
-                      }
-
-                      setState(() {
-                        _isLoading = false;
-                      });
-                    },
+                    onTap: signUpUser,
                     child: Container(
                       width: double.infinity,
                       alignment: Alignment.center,

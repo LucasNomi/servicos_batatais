@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:servicos_batatais/utils/colors.dart';
 
-import '../widgets/text_field_input.dart';
+import '../widgets/text__form_field_input.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -41,7 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(
                 height: 64,
               ),
-              TextFieldInput(
+              TextFormFieldInput(
                 controller: _email,
                 icon: const Icon(Icons.email),
                 hintText: 'Seu email aqui',
@@ -52,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(
                 height: 12,
               ),
-              TextFieldInput(
+              TextFormFieldInput(
                   controller: _password,
                   icon: const Icon(Icons.key),
                   labelText: 'Senha',

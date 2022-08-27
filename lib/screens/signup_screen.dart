@@ -51,8 +51,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             imageUrl: _image!);
       }
     } on AuthException catch (e) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(e.message)));
+      showSnackBar(e.message, context);
     }
 
     setState(() {

@@ -5,18 +5,30 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:servicos_batatais/services/storage_service.dart';
 
+class AuthException implements Exception {
+  String message;
+
+  AuthException(this.message);
+}
+
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+  User? usuario;
+
+  //* get user after login, sign up and signout
+  _getUser() {
+    usuario = _auth.currentUser;
+  }
+
   //* sign up com storage
-  Future<String> signUpUser({
+  signUpUser({
     required String email,
     required String password,
     required String username,
     required Uint8List imageUrl,
   }) async {
-    String result = 'Some error occurred';
     try {
       if (email.isNotEmpty ||
           password.isNotEmpty ||
@@ -37,12 +49,13 @@ class AuthService {
           'imageUrl': url,
         });
 
-        result = 'success';
+        _getUser();
       }
     } on FirebaseAuthException catch (e) {
-      result = e.message!;
+      if (e.code == 'email-already-in-use') {
+        throw AuthException('Email já cadastrado');
+      }
     }
-    return result;
   }
 
   //TODO: login

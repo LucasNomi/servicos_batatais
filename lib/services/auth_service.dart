@@ -58,8 +58,28 @@ class AuthService {
     }
   }
 
-  //TODO: login
-  loginUser() {}
-  //TODO: logout
-  signOut() {}
+  //* login
+  loginUser({required String email, required String password}) async {
+    try {
+      if (email.isNotEmpty || password.isNotEmpty) {
+        //* login user
+        await _auth.signInWithEmailAndPassword(
+            email: email, password: password);
+      }
+
+      _getUser();
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        throw AuthException('Usuário não cadastrado');
+      } else if (e.code == 'wrong-password') {
+        throw AuthException('Senha incorreta');
+      }
+    }
+  }
+
+  //* logout
+  signOut() async {
+    await _auth.signOut();
+    _getUser();
+  }
 }

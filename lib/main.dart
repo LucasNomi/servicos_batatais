@@ -4,8 +4,8 @@ import 'package:servicos_batatais/firebase_options.dart';
 // import 'package:servicos_batatais/responsive/mobile_screen_layout.dart';
 // import 'package:servicos_batatais/responsive/responsive_layout.dart';
 // import 'package:servicos_batatais/responsive/web_screen_layout.dart';
-// import 'package:servicos_batatais/screens/login_screen.dart';
-import 'package:servicos_batatais/screens/signup_screen.dart';
+import 'package:servicos_batatais/screens/login_screen.dart';
+// import 'package:servicos_batatais/screens/signup_screen.dart';
 import 'package:servicos_batatais/utils/colors.dart';
 
 void main() async {
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       // home: const ResponsiveLayout(
       //   mobileScreenLayout: MobileScreenLayout(),
       //   webScreenLayout: WebScreenLayout(),
-      home: const SignUpScreen(),
+      home: const LoginScreen(),
     );
   }
 }

@@ -187,7 +187,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             ),
                     ),
                   ),
-                  //TODO: transition to signup
+                  //* transition to signup
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

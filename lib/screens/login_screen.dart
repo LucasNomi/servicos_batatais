@@ -101,7 +101,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     inputType: TextInputType.text,
                     obscureText: true,
                   ),
-                  //TODO: button login
+                  //* button login
                   const SizedBox(
                     height: 12,
                   ),
@@ -130,7 +130,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                     ),
                   ),
-                  //TODO: transition to signup
+                  //* transition to signup
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

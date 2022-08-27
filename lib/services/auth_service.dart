@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:servicos_batatais/services/storage_service.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -15,7 +16,7 @@ class AuthService {
     required String username,
     required Uint8List imageUrl,
   }) async {
-    String res = 'Some error occured!';
+    String result = 'Some error occurred';
     try {
       if (email.isNotEmpty ||
           password.isNotEmpty ||
@@ -24,19 +25,26 @@ class AuthService {
         //* register user
         UserCredential credential = await _auth.createUserWithEmailAndPassword(
             email: email, password: password);
+
         print(credential.user!.uid);
+
+        String url = await StorageService()
+            .uploadImagetoStorage("profilePics", imageUrl, false);
+
         //* add user to database
         await _firestore.collection('users').doc(credential.user!.uid).set({
           'username': username,
           'uid': credential.user!.uid,
           'email': email,
+          'imageUrl': url,
         });
-        res = 'success!';
+
+        result = 'success';
       }
-    } catch (e) {
-      res = e.toString();
+    } on FirebaseAuthException catch (e) {
+      result = e.message!;
     }
-    return res;
+    return result;
   }
 
   //TODO: login

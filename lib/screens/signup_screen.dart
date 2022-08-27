@@ -5,7 +5,7 @@ import 'package:servicos_batatais/services/auth_service.dart';
 import 'package:servicos_batatais/utils/utils.dart';
 
 import '../utils/colors.dart';
-import '../widgets/text__form_field_input.dart';
+import '../widgets/text_form_field_input.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);

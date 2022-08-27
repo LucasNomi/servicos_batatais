@@ -9,7 +9,7 @@ class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  //TODO: sign up
+  //* sign up com storage
   Future<String> signUpUser({
     required String email,
     required String password,
@@ -25,8 +25,6 @@ class AuthService {
         //* register user
         UserCredential credential = await _auth.createUserWithEmailAndPassword(
             email: email, password: password);
-
-        print(credential.user!.uid);
 
         String url = await StorageService()
             .uploadImagetoStorage("profilePics", imageUrl, false);

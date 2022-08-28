@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'dart:typed_data';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:servicos_batatais/models/user_model.dart';
-import 'package:servicos_batatais/services/storage_service.dart';
+
+import '../models/user_model.dart';
+import '../services/storage_service.dart';
 
 class AuthException implements Exception {
   String message;
@@ -14,6 +16,16 @@ class AuthException implements Exception {
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  //* get details from users db
+  Future<MyUser> getUserDetails() async {
+    User currentUser = _auth.currentUser!;
+
+    DocumentSnapshot snap =
+        await _firestore.collection('users').doc(currentUser.uid).get();
+
+    return MyUser.fromSnap(snap);
+  }
 
   //* sign up com storage
   signUpUser({

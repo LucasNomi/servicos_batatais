@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
-import 'package:servicos_batatais/services/user_service.dart';
 
+import '../services/user_service.dart';
 import '../firebase_options.dart';
 import '../responsive/mobile_screen_layout.dart';
 import '../responsive/responsive_layout.dart';

@@ -11,6 +11,7 @@ class JobService {
   uploadJob(
     String uid,
     String username,
+    String imageUrl,
     String jobName,
     String jobDesc,
     String phoneNumber,
@@ -22,6 +23,7 @@ class JobService {
         Jobs job = Jobs(
             uid: uid,
             username: username,
+            imageUrl: imageUrl,
             uuid: uuid,
             jobName: jobName,
             jobDesc: jobDesc,
@@ -35,4 +37,6 @@ class JobService {
     }
     return res;
   }
+
+  //* deleting job from cloud firestore
 }

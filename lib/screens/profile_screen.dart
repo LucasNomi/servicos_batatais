@@ -75,24 +75,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ],
             ),
           ),
-          //* button job history
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15.0),
-            child: InkWellButton(
-              function: () {},
-              children: const [
-                Icon(Icons.history),
-                Text(
-                  ' Historico de Serviços',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                  ),
-                ),
-              ],
-            ),
-          ),
           //* button logout
           Padding(
             padding:

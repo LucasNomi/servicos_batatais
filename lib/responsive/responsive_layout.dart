@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../services/user_service.dart';
+import '../services/user_provider.dart';
 import '../utils/dimensions.dart';
 
 class ResponsiveLayout extends StatefulWidget {
@@ -25,8 +25,8 @@ class _ResponsiveLayoutState extends State<ResponsiveLayout> {
   }
 
   addData() async {
-    UserService _userService = Provider.of(context, listen: false);
-    await _userService.refreshUser();
+    UserProvider _userProvider = Provider.of(context, listen: false);
+    await _userProvider.refreshUser();
   }
 
   @override

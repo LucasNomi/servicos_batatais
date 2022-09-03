@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../screens/login_screen.dart';
 import '../screens/new_job_screen.dart';
-import '../services/user_service.dart';
+import '../services/user_provider.dart';
 import '../services/auth_service.dart';
 import '../models/user_model.dart';
 import '../utils/colors.dart';
@@ -28,10 +28,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
         .push(MaterialPageRoute(builder: (context) => const NewJobScreen()));
   }
 
+  manageJobScreen() {}
+
   @override
   Widget build(BuildContext context) {
     //* get user data
-    MyUser user = Provider.of<UserService>(context).getUser;
+    MyUser user = Provider.of<UserProvider>(context).getUser;
     return SafeArea(
       child: Column(
         children: [
@@ -67,6 +69,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Icon(Icons.add),
                 Text(
                   ' Novo Serviço',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          //* My jobs screen
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15.0),
+            child: InkWellButton(
+              function: manageJobScreen,
+              children: const [
+                Icon(Icons.build),
+                Text(
+                  ' Meus serviços',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 15,

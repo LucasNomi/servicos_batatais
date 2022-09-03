@@ -44,7 +44,7 @@ class AuthService {
             email: email, password: password);
 
         String url = await StorageService()
-            .uploadImagetoStorage("profilePics", imageUrl, false);
+            .uploadImagetoStorage("profilePics", imageUrl);
 
         //* creating user
         MyUser user = MyUser(

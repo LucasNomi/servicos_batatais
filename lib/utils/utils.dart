@@ -54,3 +54,24 @@ String? validatePassword(String? formPassword) {
   }
   return null;
 }
+
+String? validateJobName(String? formJobName) {
+  if (formJobName == null || formJobName.isEmpty) {
+    return 'Um indentificado para o serviço é necessário';
+  }
+  return null;
+}
+
+String? validateJobDesc(String? formJobDesc) {
+  if (formJobDesc == null || formJobDesc.isEmpty) {
+    return 'Uma descrição para o serviço é necessária';
+  }
+  return null;
+}
+
+String? validatePhoneNumber(String? formPhoneNumber) {
+  if (formPhoneNumber == null || formPhoneNumber.isEmpty) {
+    return 'Um número de telefone';
+  }
+  return null;
+}

@@ -4,7 +4,7 @@ import 'package:servicos_batatais/screens/profile_screen.dart';
 
 import '../services/job_service.dart';
 import '../models/user_model.dart';
-import '../services/user_service.dart';
+import '../services/user_provider.dart';
 import '../widgets/text_form_field_input.dart';
 import '../widgets/ink_well_button.dart';
 import '../utils/utils.dart';
@@ -30,14 +30,11 @@ class _NewJobScreenState extends State<NewJobScreen> {
     _phoneNumber.dispose();
   }
 
-  void postJob(
-    String uid,
-    String username,
-  ) async {
+  void postJob(String uid, String username, String imageUrl) async {
     try {
       if (_formKey.currentState!.validate()) {
-        String res = JobService().uploadJob(
-            uid, username, _jobName.text, _jobDesc.text, _phoneNumber.text);
+        String res = JobService().uploadJob(uid, username, imageUrl,
+            _jobName.text, _jobDesc.text, _phoneNumber.text);
 
         if (res == 'success') {
           showSnackBar('Serviço adicionado', context);
@@ -54,7 +51,7 @@ class _NewJobScreenState extends State<NewJobScreen> {
 
   @override
   Widget build(BuildContext context) {
-    MyUser user = Provider.of<UserService>(context).getUser;
+    MyUser user = Provider.of<UserProvider>(context).getUser;
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -108,7 +105,8 @@ class _NewJobScreenState extends State<NewJobScreen> {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 12.0),
                     child: InkWellButton(
-                      function: () => postJob(user.uid, user.username),
+                      function: () =>
+                          postJob(user.uid, user.username, user.imageUrl),
                       children: const [
                         Icon(Icons.add),
                         Text(

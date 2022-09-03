@@ -7,8 +7,7 @@ class StorageService {
   final FirebaseStorage _storage = FirebaseStorage.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Future<String> uploadImagetoStorage(
-      String childName, Uint8List file, bool isPost) async {
+  Future<String> uploadImagetoStorage(String childName, Uint8List file) async {
     Reference ref =
         _storage.ref().child(childName).child(_auth.currentUser!.uid);
 

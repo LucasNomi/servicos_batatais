@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../services/auth_service.dart';
 import '../models/user_model.dart';
 
-class UserService with ChangeNotifier {
+class UserProvider with ChangeNotifier {
   final AuthService _auth = AuthService();
   MyUser? _user;
 

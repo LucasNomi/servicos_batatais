@@ -23,6 +23,31 @@ class _ProfileScreenState extends State<ProfileScreen> {
         .push(MaterialPageRoute(builder: (context) => const LoginScreen()));
   }
 
+  deleteUser(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+              title: const Text('Excluir Conta'),
+              content: const Text('Deseja excluir sua conta?'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('Cancelar'),
+                ),
+                TextButton(
+                  onPressed: () async {
+                    await AuthService().deleteUser();
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const LoginScreen()));
+                  },
+                  child: const Text('Excluir'),
+                ),
+              ],
+            ));
+  }
+
   newJobScreen() {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => const NewJobScreen()));
@@ -105,6 +130,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Icon(Icons.logout),
                 Text(
                   ' Sair do app',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15.0),
+            child: InkWellButton(
+              function: () => deleteUser(context),
+              children: const [
+                Icon(
+                  Icons.delete,
+                ),
+                Text(
+                  ' Deletar conta',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 15,

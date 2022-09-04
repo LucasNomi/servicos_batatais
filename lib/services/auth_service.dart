@@ -95,4 +95,9 @@ class AuthService {
   signOut() async {
     await _auth.signOut();
   }
+
+  //* delete user
+  deleteUser() async {
+    await _auth.currentUser!.delete();
+  }
 }

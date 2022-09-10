@@ -43,11 +43,7 @@ class JobCard extends StatelessWidget {
             width: double.infinity,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(snap['jobName']),
-                Text(snap['jobDesc']),
-                Text(snap['phoneNumber'])
-              ],
+              children: [Text(snap['jobName']), Text(snap['phoneNumber'])],
             ),
           ),
         ],

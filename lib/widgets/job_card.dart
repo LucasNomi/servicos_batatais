@@ -9,10 +9,11 @@ class JobCard extends StatelessWidget {
 
   openWhatsapp() async {
     String phoneNumber = snap['jobCountryCode'] + snap['phoneNumber'];
-    Uri whatsappUrl = Uri(scheme: "https", host: "wa.me", path: phoneNumber);
+    Uri whatsappUrl =
+        Uri.parse('https://api.whatsapp.com/send?phone=$phoneNumber');
 
     if (await canLaunchUrl(whatsappUrl)) {
-      await launchUrl(whatsappUrl);
+      await launchUrl(whatsappUrl, mode: LaunchMode.externalApplication);
     }
   }
 

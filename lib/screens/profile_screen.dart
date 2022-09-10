@@ -35,85 +35,87 @@ class _ProfileScreenState extends State<ProfileScreen> {
     //* get user data
     MyUser user = Provider.of<UserProvider>(context).getUser;
     return SafeArea(
-      child: Column(
-        children: [
-          //* user info [pfp, username]
-          Container(
-            decoration:
-                const BoxDecoration(color: mobileHighlightBackgroundColor),
-            width: double.infinity,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CircleAvatar(
-                    radius: 66.0,
-                    backgroundImage: NetworkImage(user.imageUrl),
-                  ),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            //* user info [pfp, username]
+            Container(
+              decoration:
+                  const BoxDecoration(color: mobileHighlightBackgroundColor),
+              width: double.infinity,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CircleAvatar(
+                      radius: 66.0,
+                      backgroundImage: NetworkImage(user.imageUrl),
+                    ),
+                    Text(
+                      user.username,
+                      style: const TextStyle(fontSize: 26.0),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            //* Button new job
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15.0),
+              child: InkWellButton(
+                function: newJobScreen,
+                children: const [
+                  Icon(Icons.add),
                   Text(
-                    user.username,
-                    style: const TextStyle(fontSize: 26.0),
+                    ' Novo Serviço',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15,
+                    ),
                   ),
                 ],
               ),
             ),
-          ),
-          //* Button new job
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15.0),
-            child: InkWellButton(
-              function: newJobScreen,
-              children: const [
-                Icon(Icons.add),
-                Text(
-                  ' Novo Serviço',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
+            //* My jobs screen
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15.0),
+              child: InkWellButton(
+                function: manageJobScreen,
+                children: const [
+                  Icon(Icons.build),
+                  Text(
+                    ' Meus serviços',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          //* My jobs screen
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15.0),
-            child: InkWellButton(
-              function: manageJobScreen,
-              children: const [
-                Icon(Icons.build),
-                Text(
-                  ' Meus serviços',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
+            //* button logout
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15.0),
+              child: InkWellButton(
+                function: logoutUser,
+                children: const [
+                  Icon(Icons.logout),
+                  Text(
+                    ' Sair do app',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          //* button logout
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15.0),
-            child: InkWellButton(
-              function: logoutUser,
-              children: const [
-                Icon(Icons.logout),
-                Text(
-                  ' Sair do app',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

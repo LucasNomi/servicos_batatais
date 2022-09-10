@@ -93,37 +93,8 @@ class AuthService {
     return res;
   }
 
-  updateProfile({
-    required String username,
-    required Uint8List imageUrl,
-  }) async {
-    String res = "Some error occurred";
-    if (username.isNotEmpty || imageUrl != null) {
-      String url =
-          await StorageService().uploadImagetoStorage("profilePics", imageUrl);
-
-      await _firestore
-          .collection('users')
-          .doc(_auth.currentUser!.uid)
-          .update({'username': username, 'imageUrl': url});
-
-      res = 'success';
-    }
-    return res;
-  }
-
   //* signout
   signOut() async {
     await _auth.signOut();
-  }
-
-  //* delete user
-  deleteUser() async {
-    final profilePicRef =
-        _storage.ref().child('profilePics').child(_auth.currentUser!.uid);
-    final userDoc = _firestore.collection('users').doc(_auth.currentUser!.uid);
-    await _auth.currentUser!.delete();
-    await userDoc.delete();
-    await profilePicRef.delete();
   }
 }

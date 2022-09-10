@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../screens/login_screen.dart';
-import '../screens/edit_profile_screen.dart';
 import '../screens/new_job_screen.dart';
 import '../services/user_provider.dart';
 import '../services/auth_service.dart';
@@ -24,36 +23,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
         .push(MaterialPageRoute(builder: (context) => const LoginScreen()));
   }
 
-  deleteUser(BuildContext context) {
-    showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-              title: const Text('Excluir Conta'),
-              content: const Text('Deseja excluir sua conta?'),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text('Cancelar'),
-                ),
-                TextButton(
-                  onPressed: () async {
-                    await AuthService().deleteUser();
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const LoginScreen()));
-                  },
-                  child: const Text('Excluir'),
-                ),
-              ],
-            ));
-  }
-
-  editProfileScreen() {
-    Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => const EditProfileScreen()));
-  }
-
   newJobScreen() {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => const NewJobScreen()));
@@ -69,27 +38,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
       child: Column(
         children: [
           //* user info [pfp, username]
-          GestureDetector(
-            onLongPress: editProfileScreen,
-            child: Container(
-              decoration:
-                  const BoxDecoration(color: mobileHighlightBackgroundColor),
-              width: double.infinity,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CircleAvatar(
-                      radius: 66.0,
-                      backgroundImage: NetworkImage(user.imageUrl),
-                    ),
-                    Text(
-                      user.username,
-                      style: const TextStyle(fontSize: 26.0),
-                    ),
-                  ],
-                ),
+          Container(
+            decoration:
+                const BoxDecoration(color: mobileHighlightBackgroundColor),
+            width: double.infinity,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircleAvatar(
+                    radius: 66.0,
+                    backgroundImage: NetworkImage(user.imageUrl),
+                  ),
+                  Text(
+                    user.username,
+                    style: const TextStyle(fontSize: 26.0),
+                  ),
+                ],
               ),
             ),
           ),
@@ -139,25 +105,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Icon(Icons.logout),
                 Text(
                   ' Sair do app',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15.0),
-            child: InkWellButton(
-              function: () => deleteUser(context),
-              children: const [
-                Icon(
-                  Icons.delete,
-                ),
-                Text(
-                  ' Deletar conta',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 15,

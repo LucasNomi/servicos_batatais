@@ -13,12 +13,11 @@ class JobService {
     String username,
     String imageUrl,
     String jobName,
-    String jobDesc,
     String phoneNumber,
   ) {
     String res = 'Some error occurred';
     try {
-      if (jobName.isNotEmpty || jobDesc.isNotEmpty || phoneNumber.isNotEmpty) {
+      if (jobName.isNotEmpty || phoneNumber.isNotEmpty) {
         String uuid = const Uuid().v1();
         Jobs job = Jobs(
             uid: uid,
@@ -26,7 +25,6 @@ class JobService {
             imageUrl: imageUrl,
             uuid: uuid,
             jobName: jobName,
-            jobDesc: jobDesc,
             phoneNumber: phoneNumber);
 
         _firestore.collection('jobs').doc(uuid).set(job.toJson());
@@ -37,6 +35,9 @@ class JobService {
     }
     return res;
   }
+
+  //* updating a job
+  updateJob({required String jobName, required String phoneNumber}) {}
 
   //* deleting job from cloud firestore
 }

@@ -19,22 +19,20 @@ class NewJobScreen extends StatefulWidget {
 class _NewJobScreenState extends State<NewJobScreen> {
   final _formKey = GlobalKey<FormState>();
   final _jobName = TextEditingController();
-  final _jobDesc = TextEditingController();
   final _phoneNumber = TextEditingController();
 
   @override
   void dispose() {
     super.dispose();
     _jobName.dispose();
-    _jobDesc.dispose();
     _phoneNumber.dispose();
   }
 
   void postJob(String uid, String username, String imageUrl) async {
     try {
       if (_formKey.currentState!.validate()) {
-        String res = JobService().uploadJob(uid, username, imageUrl,
-            _jobName.text, _jobDesc.text, _phoneNumber.text);
+        String res = JobService().uploadJob(
+            uid, username, imageUrl, _jobName.text, _phoneNumber.text);
 
         if (res == 'success') {
           showSnackBar('Serviço adicionado', context);
@@ -76,15 +74,6 @@ class _NewJobScreenState extends State<NewJobScreen> {
                   ),
                   const SizedBox(
                     height: 12.0,
-                  ),
-                  //* Input job description
-                  TextFormFieldInput(
-                    controller: _jobDesc,
-                    icon: const Icon(Icons.description),
-                    labelText: 'Descrição',
-                    hintText: 'Dê alguns detalhes sobre seu serviço',
-                    inputType: TextInputType.name,
-                    validator: validateJobDesc,
                   ),
                   const SizedBox(
                     height: 12.0,

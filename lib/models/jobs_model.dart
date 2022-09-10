@@ -7,7 +7,6 @@ class Jobs {
   final String uuid;
   final String jobName;
   final String jobCountryCode;
-
   final String phoneNumber;
 
   const Jobs(

@@ -35,8 +35,6 @@ class _NewJobScreenState extends State<NewJobScreen> {
       if (_formKey.currentState!.validate()) {
         String res = JobService().uploadJob(uid, username, imageUrl,
             _jobName.text, _jobCountryCode, _phoneNumber.text);
-        String res = JobService().uploadJob(
-            uid, username, imageUrl, _jobName.text, _phoneNumber.text);
         if (res == 'success') {
           showSnackBar('Serviço adicionado', context);
         }

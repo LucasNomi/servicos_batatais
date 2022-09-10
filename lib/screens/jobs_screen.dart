@@ -25,8 +25,11 @@ class _JobsScreenState extends State<JobsScreen> {
           }
           return ListView.builder(
             itemCount: snapshot.data!.docs.length,
-            itemBuilder: (context, index) => JobCard(
-              snap: snapshot.data!.docs[index].data(),
+            itemBuilder: (context, index) => GestureDetector(
+              onLongPress: () {},
+              child: JobCard(
+                snap: snapshot.data!.docs[index].data(),
+              ),
             ),
           );
         }),

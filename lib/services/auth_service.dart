@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../models/user_model.dart';
@@ -15,6 +16,7 @@ class AuthException implements Exception {
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseStorage _storage = FirebaseStorage.instance;
 
   //* get details from users db
   Future<MyUser> getUserDetails() async {
@@ -98,6 +100,11 @@ class AuthService {
 
   //* delete user
   deleteUser() async {
+    final profilePicRef =
+        _storage.ref().child('profilePics').child(_auth.currentUser!.uid);
+    final userDoc = _firestore.collection('users').doc(_auth.currentUser!.uid);
     await _auth.currentUser!.delete();
+    await userDoc.delete();
+    await profilePicRef.delete();
   }
 }

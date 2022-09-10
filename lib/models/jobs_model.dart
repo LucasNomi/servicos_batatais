@@ -7,6 +7,7 @@ class Jobs {
   final String uuid;
   final String jobName;
   final String jobDesc;
+  final String jobCountryCode;
   final String phoneNumber;
 
   const Jobs(
@@ -16,6 +17,7 @@ class Jobs {
       required this.uuid,
       required this.jobName,
       required this.jobDesc,
+      required this.jobCountryCode,
       required this.phoneNumber});
 
   static Jobs fromSnap(DocumentSnapshot snap) {
@@ -28,6 +30,7 @@ class Jobs {
       uuid: snapshot['uuid'],
       jobName: snapshot['jobName'],
       jobDesc: snapshot['jobDesc'],
+      jobCountryCode: snapshot['jobCountryCode'],
       phoneNumber: snapshot['phoneNumber'],
     );
   }
@@ -39,6 +42,7 @@ class Jobs {
         'uuid': uuid,
         'jobName': jobName,
         'jobDesc': jobDesc,
+        'jobCountryCode': jobCountryCode,
         'phoneNumber': phoneNumber,
       };
 }

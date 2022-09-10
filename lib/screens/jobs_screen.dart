@@ -24,10 +24,11 @@ class _JobsScreenState extends State<JobsScreen> {
             );
           }
           return ListView.builder(
-              itemCount: snapshot.data!.docs.length,
-              itemBuilder: (context, index) => JobCard(
-                    snap: snapshot.data!.docs[index].data(),
-                  ));
+            itemCount: snapshot.data!.docs.length,
+            itemBuilder: (context, index) => JobCard(
+              snap: snapshot.data!.docs[index].data(),
+            ),
+          );
         }),
       ),
     );

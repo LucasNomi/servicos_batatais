@@ -6,8 +6,8 @@ class Jobs {
   final String imageUrl;
   final String uuid;
   final String jobName;
-  final String jobDesc;
   final String jobCountryCode;
+
   final String phoneNumber;
 
   const Jobs(
@@ -16,7 +16,6 @@ class Jobs {
       required this.imageUrl,
       required this.uuid,
       required this.jobName,
-      required this.jobDesc,
       required this.jobCountryCode,
       required this.phoneNumber});
 
@@ -29,7 +28,6 @@ class Jobs {
       imageUrl: snapshot['imageUrl'],
       uuid: snapshot['uuid'],
       jobName: snapshot['jobName'],
-      jobDesc: snapshot['jobDesc'],
       jobCountryCode: snapshot['jobCountryCode'],
       phoneNumber: snapshot['phoneNumber'],
     );
@@ -41,7 +39,6 @@ class Jobs {
         'imageUrl': imageUrl,
         'uuid': uuid,
         'jobName': jobName,
-        'jobDesc': jobDesc,
         'jobCountryCode': jobCountryCode,
         'phoneNumber': phoneNumber,
       };

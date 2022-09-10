@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:servicos_batatais/screens/profile_screen.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 
 import '../services/job_service.dart';
 import '../models/user_model.dart';
@@ -19,6 +20,7 @@ class NewJobScreen extends StatefulWidget {
 class _NewJobScreenState extends State<NewJobScreen> {
   final _formKey = GlobalKey<FormState>();
   final _jobName = TextEditingController();
+  String _jobCountryCode = '55';
   final _phoneNumber = TextEditingController();
 
   @override
@@ -31,9 +33,10 @@ class _NewJobScreenState extends State<NewJobScreen> {
   void postJob(String uid, String username, String imageUrl) async {
     try {
       if (_formKey.currentState!.validate()) {
+        String res = JobService().uploadJob(uid, username, imageUrl,
+            _jobName.text, _jobCountryCode, _phoneNumber.text);
         String res = JobService().uploadJob(
             uid, username, imageUrl, _jobName.text, _phoneNumber.text);
-
         if (res == 'success') {
           showSnackBar('Serviço adicionado', context);
         }
@@ -79,13 +82,21 @@ class _NewJobScreenState extends State<NewJobScreen> {
                     height: 12.0,
                   ),
                   //* Input user phonenumber
-                  TextFormFieldInput(
+                  IntlPhoneField(
                     controller: _phoneNumber,
-                    icon: const Icon(Icons.phone),
-                    labelText: 'Número',
-                    hintText: 'Número para contato',
-                    inputType: TextInputType.phone,
-                    validator: validatePhoneNumber,
+                    decoration: const InputDecoration(
+                      icon: Icon(Icons.phone),
+                      labelText: "Número de telefone",
+                      hintText: 'Seu número de telefone aqui',
+                      border: OutlineInputBorder(),
+                    ),
+                    keyboardType: TextInputType.phone,
+                    initialCountryCode: 'BR',
+                    onCountryChanged: (country) {
+                      setState(() {
+                        _jobCountryCode = country.code;
+                      });
+                    },
                   ),
                   const SizedBox(
                     height: 12.0,

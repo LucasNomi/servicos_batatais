@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../screens/login_screen.dart';
+import '../screens/edit_profile_screen.dart';
 import '../screens/new_job_screen.dart';
 import '../services/user_provider.dart';
 import '../services/auth_service.dart';
@@ -48,6 +49,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ));
   }
 
+  editProfileScreen() {
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => const EditProfileScreen()));
+  }
+
   newJobScreen() {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => const NewJobScreen()));
@@ -63,24 +69,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
       child: Column(
         children: [
           //* user info [pfp, username]
-          Container(
-            decoration:
-                const BoxDecoration(color: mobileHighlightBackgroundColor),
-            width: double.infinity,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CircleAvatar(
-                    radius: 66.0,
-                    backgroundImage: NetworkImage(user.imageUrl),
-                  ),
-                  Text(
-                    user.username,
-                    style: const TextStyle(fontSize: 26.0),
-                  ),
-                ],
+          GestureDetector(
+            onLongPress: editProfileScreen,
+            child: Container(
+              decoration:
+                  const BoxDecoration(color: mobileHighlightBackgroundColor),
+              width: double.infinity,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CircleAvatar(
+                      radius: 66.0,
+                      backgroundImage: NetworkImage(user.imageUrl),
+                    ),
+                    Text(
+                      user.username,
+                      style: const TextStyle(fontSize: 26.0),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

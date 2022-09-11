@@ -28,8 +28,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
         .push(MaterialPageRoute(builder: (context) => const NewJobScreen()));
   }
 
-  manageJobScreen() {}
-
   @override
   Widget build(BuildContext context) {
     //* get user data
@@ -70,24 +68,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Icon(Icons.add),
                   Text(
                     ' Novo Serviço',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            //* My jobs screen
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15.0),
-              child: InkWellButton(
-                function: manageJobScreen,
-                children: const [
-                  Icon(Icons.build),
-                  Text(
-                    ' Meus serviços',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 15,

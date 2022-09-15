@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import '../screens/profile_screen.dart';
 import '../screens/jobs_screen.dart';
@@ -14,8 +15,10 @@ class MobileScreenLayout extends StatefulWidget {
 class _MobileScreenLayoutState extends State<MobileScreenLayout> {
   int _selectedIndex = 0;
 
-  final _pagesOptions = const [
-    ProfileScreen(),
+  final _pagesOptions = [
+    ProfileScreen(
+      uid: FirebaseAuth.instance.currentUser!.uid,
+    ),
     JobsScreen(),
   ];
 

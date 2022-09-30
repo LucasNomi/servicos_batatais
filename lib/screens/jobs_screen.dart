@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/job_card.dart';
@@ -27,6 +28,7 @@ class _JobsScreenState extends State<JobsScreen> {
             itemCount: snapshot.data!.docs.length,
             itemBuilder: (context, index) => JobCard(
               snap: snapshot.data!.docs[index].data(),
+              uid: FirebaseAuth.instance.currentUser!.uid,
             ),
           );
         }),

@@ -38,8 +38,10 @@ class JobService {
     return res;
   }
 
-  //* updating a job
-  updateJob({required String jobName, required String phoneNumber}) {}
-
   //* deleting job from cloud firestore
+  deleteJob(String uuid) {
+    try {
+      _firestore.collection('jobs').doc(uuid).delete();
+    } catch (e) {}
+  }
 }

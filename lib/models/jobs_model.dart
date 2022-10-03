@@ -7,16 +7,19 @@ class Jobs {
   final String uuid;
   final String jobName;
   final String jobCountryCode;
+  final String jobFilter;
   final String phoneNumber;
 
-  const Jobs(
-      {required this.uid,
-      required this.username,
-      required this.imageUrl,
-      required this.uuid,
-      required this.jobName,
-      required this.jobCountryCode,
-      required this.phoneNumber});
+  const Jobs({
+    required this.uid,
+    required this.username,
+    required this.imageUrl,
+    required this.uuid,
+    required this.jobName,
+    required this.jobCountryCode,
+    required this.jobFilter,
+    required this.phoneNumber,
+  });
 
   static Jobs fromSnap(DocumentSnapshot snap) {
     var snapshot = snap.data() as Map<String, dynamic>;
@@ -28,6 +31,7 @@ class Jobs {
       uuid: snapshot['uuid'],
       jobName: snapshot['jobName'],
       jobCountryCode: snapshot['jobCountryCode'],
+      jobFilter: snapshot['jobFilter'],
       phoneNumber: snapshot['phoneNumber'],
     );
   }
@@ -39,6 +43,7 @@ class Jobs {
         'uuid': uuid,
         'jobName': jobName,
         'jobCountryCode': jobCountryCode,
+        'jobFilter': jobFilter,
         'phoneNumber': phoneNumber,
       };
 }

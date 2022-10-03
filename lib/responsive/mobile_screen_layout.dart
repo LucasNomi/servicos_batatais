@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import '../screens/profile_screen.dart';
 import '../screens/jobs_screen.dart';
+import '../screens/search_screen.dart';
 import '../utils/colors.dart';
 
 class MobileScreenLayout extends StatefulWidget {
@@ -20,6 +21,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
       uid: FirebaseAuth.instance.currentUser!.uid,
     ),
     JobsScreen(),
+    SearchScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -40,8 +42,12 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
             label: 'Perfil',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
+            icon: Icon(Icons.home),
             label: 'Serviços',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: "Pesquisa",
           ),
         ],
         currentIndex: _selectedIndex,

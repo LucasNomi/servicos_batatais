@@ -14,6 +14,7 @@ class JobService {
     String imageUrl,
     String jobName,
     String jobCountryCode,
+    String jobFilter,
     String phoneNumber,
   ) {
     String res = 'Some error occurred';
@@ -27,6 +28,7 @@ class JobService {
             uuid: uuid,
             jobName: jobName,
             jobCountryCode: jobCountryCode,
+            jobFilter: jobFilter,
             phoneNumber: phoneNumber);
 
         _firestore.collection('jobs').doc(uuid).set(job.toJson());

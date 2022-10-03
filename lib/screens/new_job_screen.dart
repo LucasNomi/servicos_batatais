@@ -8,6 +8,7 @@ import '../services/user_provider.dart';
 import '../widgets/text_form_field_input.dart';
 import '../widgets/ink_well_button.dart';
 import '../utils/utils.dart';
+import '../utils/filters.dart';
 
 class NewJobScreen extends StatefulWidget {
   const NewJobScreen({Key? key}) : super(key: key);
@@ -21,6 +22,7 @@ class _NewJobScreenState extends State<NewJobScreen> {
   final _jobName = TextEditingController();
   String _jobCountryCode = '55';
   final _phoneNumber = TextEditingController();
+  String _jobFilter = filters.first;
 
   @override
   void dispose() {
@@ -32,8 +34,15 @@ class _NewJobScreenState extends State<NewJobScreen> {
   void postJob(String uid, String username, String imageUrl) async {
     try {
       if (_formKey.currentState!.validate()) {
-        String res = JobService().uploadJob(uid, username, imageUrl,
-            _jobName.text, _jobCountryCode, _phoneNumber.text);
+        String res = JobService().uploadJob(
+          uid,
+          username,
+          imageUrl,
+          _jobName.text,
+          _jobCountryCode,
+          _jobFilter,
+          _phoneNumber.text,
+        );
         if (res == 'success') {
           showSnackBar('Serviço adicionado', context);
         }
@@ -94,6 +103,25 @@ class _NewJobScreenState extends State<NewJobScreen> {
                         _jobCountryCode = country.code;
                       });
                     },
+                  ),
+                  const SizedBox(
+                    height: 12.0,
+                  ),
+                  DropdownButton(
+                    value: _jobFilter,
+                    isExpanded: true,
+                    onChanged: (String? value) {
+                      setState(() {
+                        _jobFilter = value!;
+                      });
+                    },
+                    items:
+                        filters.map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
                   ),
                   const SizedBox(
                     height: 12.0,

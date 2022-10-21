@@ -4,9 +4,7 @@ import 'package:servicos_batatais/services/auth_service.dart';
 
 import '../utils/colors.dart';
 import '../utils/utils.dart';
-import '../responsive/mobile_screen_layout.dart';
-import '../responsive/responsive_layout.dart';
-import '../responsive/web_screen_layout.dart';
+import '../layout/layout.dart';
 import '../widgets/text_form_field_input.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -52,15 +50,13 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void navHomeScreen() {
-    Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => const ResponsiveLayout(
-            webScreenLayout: WebScreenLayout(),
-            mobileScreenLayout: MobileScreenLayout())));
+    Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => const ResponsiveLayout()));
   }
 
   void navSignUp() {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const SignUpScreen()));
+    Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => const SignUpScreen()));
   }
 
   @override

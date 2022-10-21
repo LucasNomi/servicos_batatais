@@ -1,27 +1,29 @@
-import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import '../screens/profile_screen.dart';
 import '../screens/jobs_screen.dart';
+import '../screens/profile_screen.dart';
 import '../screens/search_screen.dart';
+import '../services/user_provider.dart';
 import '../utils/colors.dart';
 
-class MobileScreenLayout extends StatefulWidget {
-  const MobileScreenLayout({Key? key}) : super(key: key);
+class ResponsiveLayout extends StatefulWidget {
+  const ResponsiveLayout({Key? key}) : super(key: key);
 
   @override
-  State<MobileScreenLayout> createState() => _MobileScreenLayoutState();
+  State<ResponsiveLayout> createState() => _ResponsiveLayoutState();
 }
 
-class _MobileScreenLayoutState extends State<MobileScreenLayout> {
+class _ResponsiveLayoutState extends State<ResponsiveLayout> {
   int _selectedIndex = 0;
 
   final _pagesOptions = [
     ProfileScreen(
       uid: FirebaseAuth.instance.currentUser!.uid,
     ),
-    JobsScreen(),
-    SearchScreen(),
+    const JobsScreen(),
+    const SearchScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -31,11 +33,22 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    addData();
+  }
+
+  addData() async {
+    UserProvider _userProvider = Provider.of(context, listen: false);
+    await _userProvider.refreshUser();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: _pagesOptions.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: mobileBackgroundColor,
+        backgroundColor: backgroundColor,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.person),

@@ -21,7 +21,7 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: mobileBackgroundColor,
+          backgroundColor: backgroundColor,
           leading: const Icon(Icons.search),
           title: Form(
             child: DropdownButton(

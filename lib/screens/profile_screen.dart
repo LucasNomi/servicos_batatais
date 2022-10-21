@@ -49,13 +49,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   logoutUser() async {
     await AuthService().signOut();
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const LoginScreen()));
+    Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => const LoginScreen()));
   }
 
   newJobScreen() {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const NewJobScreen()));
+    Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => const NewJobScreen()));
   }
 
   @override
@@ -68,8 +68,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 children: [
                   //* user info [pfp, username]
                   Container(
-                    decoration: const BoxDecoration(
-                        color: mobileHighlightBackgroundColor),
+                    decoration:
+                        const BoxDecoration(color: highlightBackgroundColor),
                     width: double.infinity,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),

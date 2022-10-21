@@ -5,9 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import '../screens/login_screen.dart';
 import '../services/auth_service.dart';
 import '../utils/utils.dart';
-import '../responsive/mobile_screen_layout.dart';
-import '../responsive/responsive_layout.dart';
-import '../responsive/web_screen_layout.dart';
+import '../layout/layout.dart';
 import '../utils/colors.dart';
 import '../widgets/text_form_field_input.dart';
 
@@ -68,15 +66,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   void navHomeScreen() {
-    Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => const ResponsiveLayout(
-            webScreenLayout: WebScreenLayout(),
-            mobileScreenLayout: MobileScreenLayout())));
+    Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => const ResponsiveLayout()));
   }
 
   void navLogin() {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const LoginScreen()));
+    Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => const LoginScreen()));
   }
 
   @override

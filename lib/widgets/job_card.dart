@@ -48,7 +48,7 @@ class JobCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        color: mobileHighlightBackgroundColor,
+        color: highlightBackgroundColor,
         padding: const EdgeInsets.symmetric(horizontal: 32),
         width: double.infinity,
         child: Column(

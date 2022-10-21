@@ -5,9 +5,7 @@ import 'package:provider/provider.dart';
 
 import 'services/user_provider.dart';
 import '../firebase_options.dart';
-import '../responsive/mobile_screen_layout.dart';
-import '../responsive/responsive_layout.dart';
-import '../responsive/web_screen_layout.dart';
+import '../layout/layout.dart';
 import '../screens/login_screen.dart';
 import '../utils/colors.dart';
 
@@ -32,19 +30,14 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Serviços Batatais',
-        theme: ThemeData.dark()
-            .copyWith(scaffoldBackgroundColor: mobileBackgroundColor),
-        // home: const ResponsiveLayout(
-        //   mobileScreenLayout: MobileScreenLayout(),
-        //   webScreenLayout: WebScreenLayout(),
+        theme:
+            ThemeData.dark().copyWith(scaffoldBackgroundColor: backgroundColor),
         home: StreamBuilder(
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.active) {
               if (snapshot.hasData) {
-                return const ResponsiveLayout(
-                    webScreenLayout: WebScreenLayout(),
-                    mobileScreenLayout: MobileScreenLayout());
+                return const ResponsiveLayout();
               } else if (snapshot.hasError) {
                 return Center(
                   child: Text('${snapshot.error}'),

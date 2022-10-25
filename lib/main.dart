@@ -21,6 +21,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    //* O main é envolvido por um provedor que notifica mudanças feitas na
+    //* autenticação do usuário
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
@@ -33,22 +35,29 @@ class MyApp extends StatelessWidget {
         theme:
             ThemeData.dark().copyWith(scaffoldBackgroundColor: backgroundColor),
         home: StreamBuilder(
+          //* Cria uma stream do artefato "authStateChanges" do firebase para
+          //* verificar se o usuário já está logado
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (context, snapshot) {
+            //* Caso estiver logado o usuário é mandado direto para a página do perfil
             if (snapshot.connectionState == ConnectionState.active) {
               if (snapshot.hasData) {
                 return const ResponsiveLayout();
+                //* Se houver um erro na stream o erro é mostrado na tela
               } else if (snapshot.hasError) {
                 return Center(
                   child: Text('${snapshot.error}'),
                 );
               }
+              //* Enquanto a stream não terminar de carregar um indicador
+              //* circular é mostrado na tela
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Center(
                   child: CircularProgressIndicator(),
                 );
               }
             }
+            //* Se o usuário não estiver logado ele é mandado para a página de login
             return const LoginScreen();
           },
         ),

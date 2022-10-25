@@ -16,6 +16,8 @@ class _JobsScreenState extends State<JobsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: StreamBuilder(
+        //* Stream de elementos proveniente do banco de dados dos serviços
+        //* cadastrados pelos usuários
         stream: FirebaseFirestore.instance.collection('jobs').snapshots(),
         builder: ((context,
             AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
@@ -24,6 +26,9 @@ class _JobsScreenState extends State<JobsScreen> {
               child: CircularProgressIndicator(),
             );
           }
+          //* Os serviços cadastrados são inseridos na tela em forma de lista,
+          //* contendo as informações do serviço e o uid do usuário que cadastrou
+          //* o serviço
           return ListView.builder(
             itemCount: snapshot.data!.docs.length,
             itemBuilder: (context, index) => JobCard(

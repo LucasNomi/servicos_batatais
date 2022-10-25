@@ -27,15 +27,20 @@ class _LoginScreenState extends State<LoginScreen> {
     _password.dispose();
   }
 
+  //* Chama o serviço "AuthService" para utilizar o método "loginUser" e logar
+  //* o usuário com as informações recebidas no formulário
   void loginUser() async {
     setState(() {
       _isLoading = true;
     });
     try {
+      //* Caso o formulário não valide o usuário não pode ser logado
       if (_formKey.currentState!.validate()) {
         String res = await AuthService()
             .loginUser(email: _email.text, password: _password.text);
 
+        //* Se a operação de login executar corretamente o usuário é mandado
+        //* para a pagína de perfil
         if (res == 'success') {
           navHomeScreen();
         }
@@ -49,11 +54,13 @@ class _LoginScreenState extends State<LoginScreen> {
     });
   }
 
+  //* Navega para a página de perfil
   void navHomeScreen() {
     Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => const ResponsiveLayout()));
   }
 
+  //* Navega para a página de login
   void navSignUp() {
     Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => const SignUpScreen()));
@@ -72,7 +79,6 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  //TODO: logo
                   //* text field email
                   const SizedBox(
                     height: 64,

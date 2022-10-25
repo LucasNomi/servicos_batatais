@@ -32,6 +32,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
     _userName.dispose();
   }
 
+  //* Chama o package "pickImage" para selecionar uma imagem da galeria do
+  //* usuário, e seta essa imagem na variável _image
   void selectImage() async {
     Uint8List image = await pickImage(ImageSource.gallery);
     setState(() {
@@ -39,12 +41,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
     });
   }
 
+  //* Chama o serviço "AuthService" para utilizar o método "signUpUser" e cadastrar
+  //* o usuário com as informações recebidas no formulário
   void signUpUser() async {
     setState(() {
       _isLoading = true;
     });
 
     try {
+      //* Caso o formulário não valide o usuário não pode ser cadastrado
       if (_formKey.currentState!.validate()) {
         String res = await AuthService().signUpUser(
             email: _email.text,
@@ -52,6 +57,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
             username: _userName.text,
             imageUrl: _image!);
 
+        //* Se a operação de cadastro executar corretamente o usuário é mandado
+        //* para a pagína de perfil
         if (res == 'success') {
           navHomeScreen();
         }
@@ -65,11 +72,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
     });
   }
 
+  //* Navega para a página de perfil
   void navHomeScreen() {
     Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => const ResponsiveLayout()));
   }
 
+  //* Navega para a página de login
   void navLogin() {
     Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => const LoginScreen()));
@@ -88,7 +97,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  //TODO: logo
                   const SizedBox(
                     height: 64,
                   ),

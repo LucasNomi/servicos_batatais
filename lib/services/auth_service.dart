@@ -16,9 +16,8 @@ class AuthException implements Exception {
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  final FirebaseStorage _storage = FirebaseStorage.instance;
 
-  //* get details from users db
+  //* Pegar os detalhes do usuário no banco de dados dos usuários
   Future<MyUser> getUserDetails() async {
     User currentUser = _auth.currentUser!;
 

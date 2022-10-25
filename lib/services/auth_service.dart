@@ -27,7 +27,7 @@ class AuthService {
     return MyUser.fromSnap(snap);
   }
 
-  //* sign up com storage
+  //* Cadastro de usuários, salvando os dados inseridos no banco de dados
   signUpUser({
     required String email,
     required String password,
@@ -40,21 +40,23 @@ class AuthService {
           password.isNotEmpty ||
           username.isNotEmpty ||
           imageUrl != null) {
-        //* register user
+        //* Cadastra o usuário com email e senha
         UserCredential credential = await _auth.createUserWithEmailAndPassword(
             email: email, password: password);
 
+        //* Salva a foto de perfil do usuário no armazenamento do firebase
         String url = await StorageService()
             .uploadImagetoStorage("profilePics", imageUrl);
 
-        //* creating user
+        //* Cria um modelo para o usuário, esse modelo será usado para salvar
+        //* o usuário no bando de dados
         MyUser user = MyUser(
             uid: credential.user!.uid,
             email: email,
             username: username,
             imageUrl: url);
 
-        //* add user to database
+        //* Adiciona o usuário, utilizando o modelo criado, no banco de dados
         await _firestore
             .collection('users')
             .doc(credential.user!.uid)
@@ -69,7 +71,7 @@ class AuthService {
     return res;
   }
 
-  //* login
+  //* Loga o usuário
   loginUser({
     required String email,
     required String password,
@@ -77,7 +79,7 @@ class AuthService {
     String res = 'Some error occurred';
     try {
       if (email.isNotEmpty || password.isNotEmpty) {
-        //* login user
+        //* Loga o usuário com email e senha
         await _auth.signInWithEmailAndPassword(
             email: email, password: password);
       }
@@ -92,7 +94,7 @@ class AuthService {
     return res;
   }
 
-  //* signout
+  //* Desloga o usuário
   signOut() async {
     await _auth.signOut();
   }

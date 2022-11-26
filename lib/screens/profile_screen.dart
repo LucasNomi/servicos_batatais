@@ -54,7 +54,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   newJobScreen() {
-    Navigator.of(context).pushReplacement(
+    Navigator.of(context).push(
         MaterialPageRoute(builder: (context) => const NewJobScreen()));
   }
 
